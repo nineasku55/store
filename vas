@@ -1,0 +1,29 @@
+maxTrialCount: 8000
+parallelTrialCount: 5
+studySpec:
+  metrics:
+  - metricId: ACCURACY
+    goal: MAXIMIZE
+  parameters:
+  - parameterId: learning_rate
+    doubleValueSpec:
+      minValue: 0.01
+      maxValue: 1
+  - parameterId: momentum
+    doubleValueSpec:
+      maxValue: 1
+  - parameterId: num_neurons
+    discreteValueSpec:
+      values:
+      - 512
+  algorithm: RANDOM_SEARCH
+trialJobSpec:
+  workerPoolSpecs:
+  - machineSpec:
+      machineType: e2-standard-8
+    replicaCount: '1'
+    diskSpec:
+      bootDiskType: pd-ssd
+      bootDiskSizeGb: 100
+    containerSpec:
+      imageUri: gcr.io/qwiklabs-gcp-03-9ea486b47cb6/ghfdfbg:fhbdbh
